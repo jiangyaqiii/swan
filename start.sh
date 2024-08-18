@@ -84,6 +84,7 @@ sudo apt install nginx -y
 read -p '输入泛域名：' domain;
 # *****************************
 # 将下面内容写入配置文件中 
+# vim /etc/nginx/conf.d/swan.conf 
 #需要修改为一件写入
 # map $http_upgrade $connection_upgrade {
 #     default upgrade;
@@ -202,4 +203,16 @@ echo '导出钱包私钥'
 echo ''
 computing-provider wallet new
 # *****************************
-
+# eth主网跨链至swan链
+# *****************************
+# 查看swan余额
+computing-provider wallet list
+# *****************************
+#需要改动
+computing-provider account create --ownerAddress 上一步创建的地址 \
+ --workerAddress 上一步创建的地址 \
+ --beneficiaryAddress 上一步创建的地址 \
+ --task-types 3
+# *****************************
+# 查看CP信息
+ computing-provider info
